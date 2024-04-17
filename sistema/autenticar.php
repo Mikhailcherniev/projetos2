@@ -12,4 +12,4 @@ if($email == $email_sistema and $senha == $senha_sistema){
 	echo '<script>window.location="index.php"</script>';
 }
 
- ?>s
+ ?>

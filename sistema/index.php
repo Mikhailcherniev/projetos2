@@ -1,83 +1,19 @@
+<?php 
+require_once("conexao.php");
+ ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="utf-8" />
+<meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title><?php echo $nome_sistema ?></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="shortcut icon" type="image/x-icon" href="img/icone.png">
+<title><?php echo $nome_sistema ?></title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
-<style type="text/css">
-  a, a:hover {
-  color: <?php echo $cor_sistema ?>
-}
 
-
-/* Back to top button */
-.back-to-top {
-  background: <?php echo $cor_sistema ?>
-  color: #fff;
-}
-
-
-.back-to-top:focus {
-  background: <?php echo $cor_sistema ?>
-  color: #fff;
-}
-
-.back-to-top:hover {
-  background: #019090;
-  color: #fff;
-}
-
-.navbar-default {
-  background: <?php echo $cor_sistema ?>
-}
-
-.form-control:focus {
-  border-color: <?php echo $cor_sistema ?>
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 2px <?php echo $cor_sistema ?>;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 2px <?php echo $cor_sistema ?>;
-}
-
-.service .carousel-indicators .active {
-  background: <?php echo $cor_sistema ?>
-}
-
-.btn-theme {
-  background: <?php echo $cor_sistema ?>
-}
-
-.contact-widget i {
-  color: <?php echo $cor_sistema ?>
-}
-
-
-#intro .btn-get-started {
-  font-family: "Raleway", sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 12px 32px;
-  border-radius: 3px;
-  transition: 0.5s;
-  line-height: 1;
-  margin: 10px;
-  color: #fff;
-  -webkit-animation-delay: 0.8s;
-  animation-delay: 0.8s;
-  border: 2px solid <?php echo $cor_sistema ?>;
-}
-
-#intro .btn-get-started:hover {
-  background: <?php echo $cor_sistema ?>;
-  color: #fff;
-  text-decoration: none;
-}
-
-</style>
-
+<body>
 <section class="vh-100" style="background-color: #f0f0f0;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -116,5 +52,44 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+	
+
+$("#form-config").submit(function () {
+	$('#mensagem').text('...Carregando!')
+
+    event.preventDefault();
+    var formData = new FormData(this);
+
+    $.ajax({
+        url: "scripts/salvar-config.php",
+        type: 'POST',
+        data: formData,
+
+        success: function (mensagem) {
+            $('#mensagem').text('');
+            $('#mensagem').removeClass()
+            if (mensagem.trim() == "Salvo com Sucesso") {                        
+            	location.reload();
+            	$('#mensagem').addClass('text-success')
+            	$('#mensagem').text(mensagem)
+            } else {
+                $('#mensagem').addClass('text-danger')
+                $('#mensagem').text(mensagem)
+            }
+
+
+        },
+
+        cache: false,
+        contentType: false,
+        processData: false,
+
+    });
+
+});
+
+
+</script>
 </body>
 </html>

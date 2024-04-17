@@ -1,14 +1,13 @@
-<?php
+<?php 
 @session_start();
 require_once('../conexao.php');
-if (@$_SESSION['nome'] == "") {
+if(@$_SESSION['nome'] == ""){	
 	echo '<script>window.location="../index.php"</script>';
 	exit();
 }
 
 require_once("cabecalho.php");
 ?>
-
 <form id="form-config">
 <div class="row">
 	<div class="col-md-4">
@@ -167,7 +166,6 @@ require_once("cabecalho.php");
 <small><div id="mensagem" align="center"></div></small>
 
 </form>
-
 <script type="text/javascript">
 	
 
